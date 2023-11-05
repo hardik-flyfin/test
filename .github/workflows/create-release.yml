@@ -5,7 +5,7 @@ on:
 
 name: Create release with notes
 jobs:
-  create_github_release_with_noted:
+  create_github_release_with_notes:
     runs-on: ubuntu-latest
     needs: create_version_tag
     steps:
