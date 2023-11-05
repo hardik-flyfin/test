@@ -1,25 +1,26 @@
 name: Create Pull Request on merge in main branch
 
+define: &target_branch 'main'
+
 on:
   pull_request:
     types:
       - closed
     branches: 
-      - main
+      - *target_branch
 
 permissions:
   contents: write
   pull-requests: write
 
 jobs:
-  create_pull_request:
-    if: ${{ github.event.pull_request.merged && !endsWith(github.event.pull_request.title, '[Auto-Generated]')}}
+  create_version_tag:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          ref: main
+          ref: *target_branch
 
       - name: Set git username and user email
         run: |
@@ -53,6 +54,16 @@ jobs:
         run: |
           git push
           git push --tags
-            - name: Create Release
+
+  create_github_release_with_noted:
+    runs-on: ubuntu-latest
+    needs: create_version_tag
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          ref: *target_branch
       - name: Create release
-        run: gh release create ${{ github.ref }} --generate-notes
+        run: |
+          gh release create ${{ github.ref }} --generate-notes
+      
