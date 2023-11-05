@@ -22,8 +22,8 @@ jobs:
 
       - name: Set git username and user email
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git config user.name 'hardik'
+          git config user.email 'hardik@flyfin.org'
 
       - name: Install 
         run: |
