@@ -69,10 +69,14 @@ jobs:
       - name: Install 
         run: |
           yarn install
+      - name: get_latest_tag
+        id: latest_tag
+        run: |
+          git tag --sort=-creatordate | head -1
   
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create ${{ $(git tag --sort=-creatordate | head -1) }} --generate-notes
+          gh release create ${{ steps.latest_tag.outputs }} --generate-notes
       
