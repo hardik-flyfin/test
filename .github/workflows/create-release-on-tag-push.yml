@@ -65,5 +65,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create ${{ github.ref }} --generate-notes
+          gh release create $(git describe --tags --abbrev=0) --generate-notes
       
