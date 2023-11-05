@@ -1,7 +1,8 @@
 on:
-  push:
-    tags:
-      - '*'
+  workflow_run:
+    workflows: ["Increase version and create tag"]
+    types:
+      - completed
 
 name: Create release with notes
 jobs:
