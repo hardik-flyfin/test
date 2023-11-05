@@ -74,5 +74,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create $(git tag --sort=-creatordate | head -1) --generate-notes
+          gh release create ${{ $(git tag --sort=-creatordate | head -1) }} --generate-notes
       
