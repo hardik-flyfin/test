@@ -1,54 +1,54 @@
-name: Increase version and create tag
+# name: Increase version and create tag
 
-on:
-  pull_request:
-    types:
-      - closed
-    branches: 
-      - main
+# on:
+#   pull_request:
+#     types:
+#       - closed
+#     branches: 
+#       - main
 
-permissions:
-  contents: write
-  pull-requests: write
+# permissions:
+#   contents: write
+#   pull-requests: write
 
-jobs:
-  create_version_tag:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          ref: main
+# jobs:
+#   create_version_tag:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Checkout Repository
+#         uses: actions/checkout@v3
+#         with:
+#           ref: main
 
-      - name: Set git username and user email
-        run: |
-          git config user.name 'hardik'
-          git config user.email 'hardik@flyfin.org'
+#       - name: Set git username and user email
+#         run: |
+#           git config user.name 'hardik'
+#           git config user.email 'hardik@flyfin.org'
 
-      - name: Install 
-        run: |
-          yarn install      
+#       - name: Install 
+#         run: |
+#           yarn install      
 
-      - name: Turm on git version tagging
-        run: |
-          yarn config set version-git-tag true
+#       - name: Turm on git version tagging
+#         run: |
+#           yarn config set version-git-tag true
 
-      - name: Make commit for patch
-        if: startsWith(github.event.pull_request.title, '[patch]')
-        run: |
-          yarn version --patch
+#       - name: Make commit for patch
+#         if: startsWith(github.event.pull_request.title, '[patch]')
+#         run: |
+#           yarn version --patch
 
-      - name: Make commit for major changes
-        if: startsWith(github.event.pull_request.title, '[major]')
-        run: |
-          yarn version --major
+#       - name: Make commit for major changes
+#         if: startsWith(github.event.pull_request.title, '[major]')
+#         run: |
+#           yarn version --major
 
-      - name: Make commit for minor changes
-        if: ${{ !startsWith(github.event.pull_request.title, '[patch]') && !startsWith(github.event.pull_request.title, '[major]') }}
-        run: |
-          yarn version --minor 
+#       - name: Make commit for minor changes
+#         if: ${{ !startsWith(github.event.pull_request.title, '[patch]') && !startsWith(github.event.pull_request.title, '[major]') }}
+#         run: |
+#           yarn version --minor 
 
-      - name: git push repo and tag
-        run: |
-          git push
-          git push --tags
+#       - name: git push repo and tag
+#         run: |
+#           git push
+#           git push --tags
