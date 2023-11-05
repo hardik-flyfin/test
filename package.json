@@ -1,0 +1,9 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "testing",
+  "main": "index.js",
+  "repository": "https://github.com/hardik-flyfin/test.git",
+  "author": "Hardik <hardik@flyfin.org>",
+  "license": "MIT"
+}
