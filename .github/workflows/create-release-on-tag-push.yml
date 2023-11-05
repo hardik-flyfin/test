@@ -78,5 +78,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          echo ${{ steps.latest_tag.outputs }}
           gh release create ${{ steps.latest_tag.outputs }} --generate-notes
       
