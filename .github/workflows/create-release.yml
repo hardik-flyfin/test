@@ -26,9 +26,9 @@ jobs:
       
       - name: Create release
         id: create_release
-        env:
-          GIT_LATEST_TAG: ${{ env.GIT_LATEST_TAG }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # env:
+        #   GIT_LATEST_TAG: ${{ env.GIT_LATEST_TAG }}
+        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "${{ env.GIT_LATEST_TAG }}"
           gh release create ${{ env.GIT_LATEST_TAG }} --generate-notes
