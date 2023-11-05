@@ -49,7 +49,8 @@ jobs:
         run: |
           yarn version --minor 
 
-      - name: git push tags
+      - name: git push tag and repo
         run: |
           git push --tags
+          git push
 
