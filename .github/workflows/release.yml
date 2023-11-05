@@ -1,0 +1,14 @@
+changelog:
+  categories:
+  - title: Features :tada:
+    labels:
+    - feature
+  - title: chore
+    labels:
+    - chore
+  - title: Bug fixes
+    labels:
+    - bug-fix
+  - title: Other Changes
+    labels:
+       - “*”
