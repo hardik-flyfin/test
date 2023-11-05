@@ -1,13 +1,11 @@
-name: Create Pull Request on merge in main branch
-
-define: &target_branch 'main'
+name: Create github release with new tag
 
 on:
   pull_request:
     types:
       - closed
     branches: 
-      - *target_branch
+      - main
 
 permissions:
   contents: write
@@ -20,7 +18,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          ref: *target_branch
+          ref: main
 
       - name: Set git username and user email
         run: |
@@ -62,7 +60,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          ref: *target_branch
+          ref: main
       - name: Create release
         run: |
           gh release create ${{ github.ref }} --generate-notes
