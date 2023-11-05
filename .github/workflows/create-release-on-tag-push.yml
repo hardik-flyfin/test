@@ -72,7 +72,7 @@ jobs:
       - name: get_latest_tag
         id: latest_tag
         run: |
-          echo "::set-output name=tag::$(git tag --sort=-creatordate | head -1)'
+          echo "::set-output name=tag::$(git tag --sort=-creatordate | head -1)"
           
   
       - name: Create release
