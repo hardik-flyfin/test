@@ -53,14 +53,3 @@ jobs:
         run: |
           git push --tags
 
-      - name: Get Version
-        id: package-version
-        uses: martinbeentjes/npm-get-version-action@v1.3.1
-
-      - uses: google-github-actions/release-please-action@v3
-        with:
-          release-type: node
-          package-name: release-please-action
-          default-branch: main
-          pull-request-title-pattern: "chore${scope}: release${component} ${version} [Auto-Generated]"
-          release-as: ${{ steps.package-version.outputs.current-version }}
