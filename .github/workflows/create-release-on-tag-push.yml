@@ -48,7 +48,10 @@ jobs:
         if: ${{ !startsWith(github.event.pull_request.title, '[patch]') && !startsWith(github.event.pull_request.title, '[major]') }}
         run: |
           yarn version --minor 
-          
+
+      -name: git push tags
+        run: git push --tags
+
       - name: Get Version
         id: package-version
         uses: martinbeentjes/npm-get-version-action@v1.3.1
