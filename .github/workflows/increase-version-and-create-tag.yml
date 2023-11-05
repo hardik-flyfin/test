@@ -1,4 +1,4 @@
-name: Create github release with new tag
+name: Increase version and create tag
 
 on:
   pull_request:
@@ -52,33 +52,3 @@ jobs:
         run: |
           git push
           git push --tags
-
-  create_github_release_with_noted:
-    runs-on: ubuntu-latest
-    needs: create_version_tag
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          ref: main
-      - name: Set git username and user email
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email 'github-actions[bot]@users.noreply.github.com'
-
-      - name: Install 
-        run: |
-          yarn install
-      - name: get_latest_tag
-        id: get_latest_tag
-        run: |
-          echo "{latest_tag}={$(git tag --sort=-creatordate | head -1)}" >> $GITHUB_OUTPUT
-          
-  
-      - name: Create release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          echo {{ steps.get_latest_tag.outputs.latest_tag }}
-          gh release create ${{ steps.get_latest_tag.outputs.latest_tag }} --generate-notes
-      
