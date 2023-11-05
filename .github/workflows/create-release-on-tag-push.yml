@@ -30,7 +30,7 @@ jobs:
         run: |
           yarn install      
 
-      - name: set git version tagging true
+      - name: Turm on git version tagging
         run: |
           yarn config set version-git-tag true
 
@@ -49,8 +49,8 @@ jobs:
         run: |
           yarn version --minor 
 
-      - name: git push tag and repo
+      - name: git push repo and tag
         run: |
-          git push --tags
           git push
+          git push --tags
 
