@@ -7,7 +7,7 @@ on:
 name: Create release with notes
 jobs:
   create_github_release_with_notes:
-    if: github.event.workflow_run.head_branch.merged == true
+    if: github.event.workflow_run.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
