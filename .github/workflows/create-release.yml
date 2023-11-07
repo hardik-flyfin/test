@@ -7,6 +7,7 @@ on:
 name: Create release with notes
 jobs:
   create_github_release_with_notes:
+    if: github.event.workflow_run.conclusion == success
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -31,6 +32,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "${{ github.event }}"
           echo "${{ env.GIT_LATEST_TAG }}"
           gh release create ${{ env.GIT_LATEST_TAG }} --generate-notes
