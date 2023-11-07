@@ -23,8 +23,8 @@ jobs:
 
       - name: Set git username and user email
         run: |
-          git config user.name 'hardik'
-          git config user.email 'hardik@flyfin.org'
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
 
       - name: Install 
         run: |
