@@ -13,6 +13,7 @@ permissions:
 name: Increase version and create tag
 jobs:
   create_version_tag:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
