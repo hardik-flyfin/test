@@ -13,6 +13,7 @@ permissions:
 name: Increase version and create tag
 jobs:
   create_version_tag:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -22,8 +23,8 @@ jobs:
 
       - name: Set git username and user email
         run: |
-          git config user.name 'hardik'
-          git config user.email 'hardik@flyfin.org'
+          git config user.name 'github-actions[bot]'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
 
       - name: Install 
         run: |
@@ -32,6 +33,8 @@ jobs:
       - name: Turm on git version tagging
         run: |
           yarn config set version-git-tag true
+          yarn config set version-git-message "%s"
+          yarn config set version-tag-prefix ""
 
       - name: Make commit for patch
         if: startsWith(github.event.pull_request.title, '[patch]')
