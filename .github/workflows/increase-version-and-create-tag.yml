@@ -15,6 +15,7 @@ jobs:
   create_version_tag:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    environment: GITHUB_ACTIONS
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
