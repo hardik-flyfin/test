@@ -1,5 +1,6 @@
 123
 456
+Other change
 789
 101
 102
@@ -8,7 +9,10 @@ this is a test commit
 this is 2nd test commit
 askjdjks
 
+Breaking change
+
 sas
 new
 new2
 new 3
+Feature
